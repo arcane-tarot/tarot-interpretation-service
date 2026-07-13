@@ -1,0 +1,19 @@
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+from app.adapters.http.health import router as health_router
+from app.adapters.http.routes import router as tarot_router
+from app.infrastructure.settings import settings
+
+app = FastAPI(title="Tarot Interpretation Service")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=settings.cors_origins,
+    allow_credentials=False,
+    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_headers=["*"],
+)
+
+app.include_router(health_router)
+app.include_router(tarot_router)
