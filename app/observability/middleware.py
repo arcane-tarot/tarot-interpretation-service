@@ -7,7 +7,6 @@ from app.observability.metrics import (
     HTTP_REQUESTS,
 )
 
-
 EXCLUDED_PATHS = {
     "/metrics",
     "/health",

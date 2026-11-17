@@ -1,6 +1,5 @@
 from prometheus_client import Counter, Histogram
 
-
 HTTP_REQUESTS = Counter(
     "tarot_http_requests_total",
     "Total HTTP requests received by the backend",

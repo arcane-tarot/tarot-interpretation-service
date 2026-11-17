@@ -12,8 +12,8 @@ from app.domain.models import TarotCard
 from fastapi import Response
 from prometheus_client import CONTENT_TYPE_LATEST, generate_latest
 
-
 router = APIRouter(prefix="/api/tarot", tags=["tarot"])
+
 
 @router.get("/metrics", include_in_schema=False)
 def metrics():
@@ -21,6 +21,7 @@ def metrics():
         content=generate_latest(),
         headers={"Content-Type": CONTENT_TYPE_LATEST},
     )
+
 
 @router.post(
     "/interpretations",
