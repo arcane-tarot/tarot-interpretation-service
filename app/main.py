@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.adapters.http.health import router as health_router
 from app.adapters.http.routes import router as tarot_router
 from app.infrastructure.settings import settings
+from app.observability.middleware import metrics_middleware
 
 app = FastAPI(title="Tarot Interpretation Service")
 
@@ -17,3 +18,4 @@ app.add_middleware(
 
 app.include_router(health_router)
 app.include_router(tarot_router)
+app.middleware("http")(metrics_middleware)
