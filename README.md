@@ -101,6 +101,7 @@ curl --fail --silent --show-error \
 | `GET /health/live` | Process is alive. |
 | `GET /health/startup` | Application started. |
 | `GET /health/ready` | OpenAI API key is configured. |
+| `GET /metrics` | Prometheus metrics for the backend. |
 
 Readiness returns HTTP `503` when `OPENAI_API_KEY` is absent.
 

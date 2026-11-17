@@ -9,18 +9,7 @@ from app.application.use_cases.interpret_tarot_card import (
 from app.bootstrap import get_interpret_tarot_card_use_case
 from app.domain.models import TarotCard
 
-from fastapi import Response
-from prometheus_client import CONTENT_TYPE_LATEST, generate_latest
-
 router = APIRouter(prefix="/api/tarot", tags=["tarot"])
-
-
-@router.get("/metrics", include_in_schema=False)
-def metrics():
-    return Response(
-        content=generate_latest(),
-        headers={"Content-Type": CONTENT_TYPE_LATEST},
-    )
 
 
 @router.post(

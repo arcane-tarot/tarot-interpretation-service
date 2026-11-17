@@ -87,6 +87,21 @@ def test_interpretation_rejects_invalid_payload():
     assert response.status_code == 422
 
 
+def test_metrics_are_exposed_at_conventional_path():
+    response = client.get("/metrics")
+
+    assert response.status_code == 200
+    assert response.headers["content-type"].startswith("text/plain")
+    assert "tarot_http_requests_total" in response.text
+    assert "tarot_http_request_duration_seconds" in response.text
+
+
+def test_metrics_are_not_exposed_under_tarot_api():
+    response = client.get("/api/tarot/metrics")
+
+    assert response.status_code == 404
+
+
 def test_health_probes_ready():
     generator = FakeTextGenerator(ready=True)
     app.dependency_overrides[get_text_generator] = lambda: generator
